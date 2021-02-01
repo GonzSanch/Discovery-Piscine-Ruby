@@ -6,19 +6,34 @@
 		body {
 			background-color: pink;
 		}
+		footer {
+			background-color: rgb(79, 204, 162);
+			height: 150px;
+			width: auto;
+		}
+		.div-container {
+			display: grid;
+			grid-template-columns: 1fr 3fr;
+			grid-gap: 10px;
+		}
+		.leftMenu {
+			background-color: rgb(218, 71, 71);
+		}
+		.image {
+			text-align: center;
+			background-color: rgb(133, 56, 133);
+		}
 		.myfont {
 			font-family: Helvetica;
 			color:  #0000ff;
 			text-align: center;
 		}
 		.kittenImage {
-			width: 50%;
 			height: auto;
 			text-align: center;
 			border-radius: 50%;
 			border-style: dotted;
 			border-color: white;
-
 		}
 	</style>
 </head>
@@ -27,8 +42,16 @@
 		<h1 class="myfont">Título</h1>
 		<h2 class="myfont">Subtítulo</h2>
 	</div>
-	<div style="text-align: center;">
+	<div class="div-container">
+		<div class="leftMenu">
+			<br>
+		</div>
+		<div class="image">
 			<img class="kittenImage" src="https://www.thesprucepets.com/thmb/dp-HvVRuM14H32PRu9FQmoDDMK0=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/kitten-looking-at-camera-521981437-57d840213df78c583374be3b.jpg" alt="kitten">
 		</div>
+	</div>
 </body>
+<footer>
+	<h2 class="myfont" style="color: white;">Un footer.</h2>
+</footer>
 </html>
