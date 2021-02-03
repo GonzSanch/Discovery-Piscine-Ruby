@@ -1,20 +1,20 @@
 #!/usr/bin/ruby
 secret = rand(101)
-difficulty = 3
-for i in 0..difficulty
+difficulty = 4
+while difficulty != 0
 	print "Introduzca un número: "
 	number = gets.chomp.to_i
-	if number > 100 or number < 0
-		puts "Este número no está comprendido entre 0 y 100"
+	if number == secret
+		puts "¡Lo ha encontrado!"
+		exit 0
 	else
-		if number == secret
-			puts "¡Lo ha encontrado!"
-		else
+		difficulty -= 1
+		if number > 100 or number < 0
+			puts "Este número no está comprendido entre 0 y 100"
+		elsif difficulty != 0
 			sign = number < secret ? '+' : '-'
-			puts "#{sign} número de intentos: #{difficulty - i}"
+			puts "#{sign} número de intentos pendientes: #{difficulty}"
 		end
 	end
 end
-if difficulty == i
-	puts "¡Ha perdido! El número era #{secret}"
-end
+puts "¡Ha perdido! El número era #{secret}"
