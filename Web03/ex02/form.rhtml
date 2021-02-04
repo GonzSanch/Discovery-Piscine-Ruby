@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Form</title>
+</head>
+<body>
+	<%	class User
+			def initialize(age, fname, lname)
+				@user_age = age
+				@user_fname = fname
+				@user_lname = lname
+			end
+			def age
+				@user_age
+			end
+		end
+
+		users = Array.new
+		users.push(User.new(25, "Nombre", "Apellido"))
+		users.push(User.new(18, "Nombre", "Apellido"))
+		users.push(User.new(30, "Nombre", "Apellido"))
+		users.push(User.new(33, "Nombre", "Apellido"))
+		users.push(User.new(27, "Nombre", "Apellido"))
+		users.push(User.new(21, "Nombre", "Apellido"))
+		users.push(User.new(42, "Nombre", "Apellido"))
+		users.push(User.new(54, "Nombre", "Apellido"))
+	%>
+	<form action="">
+		<label for="fname">Nombre</label><br>
+		<input type="text" id="fname" name="fname"><br>
+		<label for="lname">Apellido</label><br>
+		<input type="text" id="lname" name="lname"><br>
+		<label for="age">Edad</label><br>
+		<input type="number" id="age" name="age"><br>
+		<br>
+		<input type="submit" value="Validar">
+	</form>
+	<br>
+	<%=
+		if 	servlet_request.query['fname'] != ''
+			fname = servlet_request.query['fname']
+			lname = servlet_request.query['lname']
+			age   = servlet_request.query['age'].to_i
+			users.push(User.new(age, fname, lname))
+			users.sort! {|a, b| a.age <=> b.age}
+			younger = 0
+			older = 0
+			users.each do |u|
+				if age < u.age
+					younger+=1
+				elsif age > u.age
+					older+=1
+				end
+			end
+			"Hola #{fname} #{lname}, tienes más edad que #{older} personas y menos edad que #{younger} personas."
+		end
+	%>
+</body>
+</html>

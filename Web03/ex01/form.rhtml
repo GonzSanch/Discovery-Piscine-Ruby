@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Form</title>
+</head>
+<body>
+	<form action="">
+		<label for="fname">Nombre</label><br>
+		<input type="text" id="fname" name="fname"><br>
+		<label for="lname">Apellido</label><br>
+		<input type="text" id="lname" name="lname"><br>
+		<br>
+		<input type="submit" value="Validar">
+	</form>
+	<br>
+	<%=
+		if 	servlet_request.query['fname'] != ''
+			fname = servlet_request.query['fname']
+			lname = servlet_request.query['lname']
+			"Hola #{fname} #{lname}"
+		end
+	%>
+</body>
+</html>
