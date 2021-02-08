@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Form2file</title>
+</head>
+<body>
+		<form action="">
+			<label for="fname">Nombre</label><br>
+			<input type="text" id="fname" name="fname"><br>
+			<label for="lname">Apellido</label><br>
+			<input type="text" id="lname" name="lname"><br>
+			<label for="age">Edad</label><br>
+			<input type="number" id="age" name="age"><br>
+			<br>
+			<input type="submit" value="Validar">
+		</form>
+		<br>
+		<%
+		if 	servlet_request.query['fname'] != '' and not servlet_request.query['fname'].nil?
+		fname = servlet_request.query['fname']
+		lname = servlet_request.query['lname']
+		age   = servlet_request.query['age'].to_i
+		str = "#{fname} #{lname} de #{age} años.\n"
+		File.write("Web04/ex02/vip_list.txt", str, mode: "a")
+		end
+		file = File.open("Web04/ex02/vip_list.txt")
+		array = file.readlines.map(&:chomp)
+		array.each do |person|
+		%>
+		<h2> Lista de personas invitadas: </h2>
+		<li>
+			<%=person%>
+		</li>
+		<%end%>
+		</body>
+</html>

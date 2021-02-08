@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Param</title>
+</head>
+<body>
+	<p>
+		Crea nuevo archivo..
+	</p>
+	<a href="./show.rhtml">Leer archivo</a>
+	<%
+		File.write("Web04/ex01/new_file.txt", "Bye bye!", mode: "w")
+	%>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Form2file</title>
+</head>
+<body>
+		<form action="">
+			<label for="fname">Nombre del archivo</label><br>
+			<input type="text" id="fname" name="fname"><br>
+			<label for="line">Linea</label><br>
+			<input type="number" id="line" name="line"><br>
+			<label for="value">Valor</label><br>
+			<input type="text" id="value" name="value"><br>
+			<br>
+			<input type="submit" value="Enviar">
+		</form>
+		<br>
+		<%
+			if 	servlet_request.query['fname'] != '' and not servlet_request.query['fname'].nil?
+				fname = "Web04/ex03/"+servlet_request.query['fname']
+				line = servlet_request.query['line'].to_i
+				value   = servlet_request.query['value']+"\n"
+				if File.exist?(fname)
+					p "hola"
+					lines = File.readlines(fname)
+					if lines.size > line
+						lines.insert(line, value);
+						File.write(fname, lines.join(""), mode: "w")
+					else
+						File.write(fname, value, mode: "a")
+					end
+				else
+					File.write(fname, value, mode: "a")
+				end
+			end
+		%>
+		<h2> File <%= fname %>:</h2>
+		<%
+			if servlet_request.query['fname'] != '' and not servlet_request.query['fname'].nil? and File.exist?(fname)
+				file = File.open(fname)
+				array = file.readlines.map(&:chomp)
+				array.each do |person|
+		%>
+		<li>
+		<%=
+				if not person.nil?
+					person
+				end
+		%>
+		</li>
+		<%
+				end
+			end
+		%>
+		</body>
+</html>
