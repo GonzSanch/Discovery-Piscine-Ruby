@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Transformación</title>
+	<style>
+		.container {
+			display: flex;
+			justify-content: center;
+  			align-items: center;
+		}
+		.square-red{
+			width: 200px;
+			height: 200px;
+			background-color: red;
+		}
+		.square-green{
+			width: 200px;
+			height: 200px;
+			background-color: green;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="square-red" onmouseover="turnGreen(this)" onmouseout="turnRed(this)"></div>
+	</div>
+</body>
+<script>
+	function turnGreen(obj) {
+		obj.className = "square-green";
+	}
+	function turnRed(obj) {
+		obj.className = "square-red";
+	}
+</script>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Colorful</title>
+	<style>
+		p {
+			margin-left: auto;
+			margin-right: auto;
+			width: 8em;
+			user-select: none;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<p id="paragraph" onclick="changeColor()">
+			“Don't ever let someone tell you, you can't do something. Not even me. You got a dream, you got to protect it. People can’t do something themselves, they want to tell you you can’t do it. You want something, go get it. Period.”
+		</p>
+	</div>
+</body>
+<script>
+	function generateRandomColor() {
+		var letters = '0123456789ABCDEF';
+		var color = '#';
+		for (var i = 0; i < 6; i++) {
+			color += letters[Math.floor(Math.random() * 16)];
+		}
+  		return color;
+	}
+	function changeColor() {
+		document.getElementById("paragraph").style.color = generateRandomColor();
+	}
+</script>
+</html>
