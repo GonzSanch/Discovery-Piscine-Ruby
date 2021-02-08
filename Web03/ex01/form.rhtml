@@ -15,7 +15,7 @@
 	</form>
 	<br>
 	<%=
-		if 	servlet_request.query['fname'] != ''
+		if 	servlet_request.query['fname'] != '' and not servlet_request.query['fname'].nil?
 			fname = servlet_request.query['fname']
 			lname = servlet_request.query['lname']
 			"Hola #{fname} #{lname}"
