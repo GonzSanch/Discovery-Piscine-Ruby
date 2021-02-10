@@ -2,7 +2,7 @@
 def nacimientos_famosos(list)
 	if list.is_a? Hash
 		list.sort_by {|k, v| v[:fecha_de_nacimiento]}
-		.each {|k, v| puts "#{v[:nombre]} es una gran cientíifiiica nacida en #{v[:fecha_de_nacimiento]}."}
+		.each {|k, v| puts "#{v[:nombre]} es una gran científica nacida en #{v[:fecha_de_nacimiento]}."}
 	end
 end
 
