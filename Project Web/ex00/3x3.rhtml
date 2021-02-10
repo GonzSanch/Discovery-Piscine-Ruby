@@ -103,11 +103,14 @@
 		<br>
 		<h2 id="winner" class="winner"></h2>
 		<button onclick="reset_board()">Reiniciar</button>
+		<button onclick="remove_play()">Anular jugada</button>
 	</div>
 </body>
 <script>
 	let play_board = ["", "", "", "", "", "", "", "", ""];
 	let board_full = false;
+	let player1_lmove = new Array();
+	let player2_lmove = new Array();
 
 	const board_container = document.querySelector(".play-area");
 	const winner = document.getElementById("winner");
@@ -129,6 +132,7 @@
 		do {
 			selected = Math.floor(Math.random() * 9);
 		} while (play_board[selected] != "");
+			player2_lmove.push(selected);
 			play_board[selected] = computer;
 			game_loop();
 		}
@@ -136,6 +140,7 @@
 
 	const addPlayerMove = element => {
 		if (!board_full && play_board[element] == "") {
+			player1_lmove.push(element);
 			play_board[element] = player;
 			game_loop();
 			addComputerMove();
@@ -213,7 +218,26 @@
 		render_board();
 	};
 
+	const remove_play = () => {
+		if (player1_lmove.length || player2_lmove.length) {
+			console.log("console in");
+			if (player1_lmove.length) play_board[player1_lmove.pop()] = "";
+			if (player2_lmove.length) play_board[player2_lmove.pop()] = "";
+			board_full = false;
+			winner.classList.remove("playerWin");
+			winner.classList.remove("computerWin");
+			winner.classList.remove("draw");
+			winner.innerText = "";
+			game_loop();
+		}
+	};
+
 	render_board();
 
 </script>
 </html>
+
+<!-- TODO: hacer el juego 5x5 -->
+<!-- TODO: IA avanzada -->
+<!-- TODO: Añadir menu (opciones) -->
+<!-- TODO: guardar o cargar partida -->
