@@ -22,7 +22,6 @@
 				line = servlet_request.query['line'].to_i
 				value   = servlet_request.query['value']+"\n"
 				if File.exist?(fname)
-					p "hola"
 					lines = File.readlines(fname)
 					if lines.size > line
 						lines.insert(line, value);
