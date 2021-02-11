@@ -18,13 +18,13 @@
 		<br>
 		<%
 			if 	servlet_request.query['fname'] != '' and not servlet_request.query['fname'].nil?
-				fname = "Web04/ex03/"+servlet_request.query['fname']
+				fname = "Web04/ex03/"+servlet_request.query['fname'].force_encoding('UTF-8')
 				line = servlet_request.query['line'].to_i
-				value   = servlet_request.query['value']+"\n"
+				value   = servlet_request.query['value']+"\n".force_encoding('UTF-8')
 				if File.exist?(fname)
 					lines = File.readlines(fname)
 					if lines.size > line
-						lines.insert(line, value);
+						lines[line] = value
 						File.write(fname, lines.join(""), mode: "w")
 					else
 						File.write(fname, value, mode: "a")
@@ -50,6 +50,7 @@
 		</li>
 		<%
 				end
+				file.close
 			end
 		%>
 		</body>

@@ -16,22 +16,25 @@
 			<input type="submit" value="Validar">
 		</form>
 		<br>
+		<h2> Lista de personas invitadas: </h2>
 		<%
 		if 	servlet_request.query['fname'] != '' and not servlet_request.query['fname'].nil?
-		fname = servlet_request.query['fname']
-		lname = servlet_request.query['lname']
-		age   = servlet_request.query['age'].to_i
-		str = "#{fname} #{lname} de #{age} años.\n"
-		File.write("Web04/ex02/vip_list.txt", str, mode: "a")
+			fname = servlet_request.query['fname'].force_encoding('UTF-8')
+			lname = servlet_request.query['lname'].force_encoding('UTF-8')
+			age   = servlet_request.query['age'].to_i
+			str = "#{fname} #{lname} de #{age} años.\n"
+			File.write("Web04/ex02/vip_list.txt", str, mode: "a")
 		end
 		file = File.open("Web04/ex02/vip_list.txt")
 		array = file.readlines.map(&:chomp)
 		array.each do |person|
 		%>
-		<h2> Lista de personas invitadas: </h2>
 		<li>
 			<%=person%>
 		</li>
-		<%end%>
+		<%
+			end
+			file.close
+		%>
 		</body>
 </html>
